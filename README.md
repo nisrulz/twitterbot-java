@@ -18,6 +18,8 @@ Credits
 
 [staticvoidgames](http://staticvoidgames.com/tutorials/howTo/twitterBot) - My starter guide to understanding how to build a twitter bot in java.
 
+[kaffeine](https://kaffeine.herokuapp.com/#!) - Use this to keep your dyno active all the time
+
 
 License
 =======
