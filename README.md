@@ -1,15 +1,22 @@
-#GDG New Delhi Twitter Bot - Java
+# Twitter Bot - Java
+
+I built this twitter bot to automate few tasks on twitter with respect to GDG New Delhi.
 
 ###Steps
 1. Create a file named `twitter4j.properties` and update it with credentials from your twitter dashboard
+
     ```
-    oauth.consumerKey=Your_Consumer_Key
+   oauth.consumerKey=Your_Consumer_Key
     oauth.consumerSecret=Your_Consumer_Secret
     oauth.accessToken=Your_Access_Token
     oauth.accessTokenSecret=Your_Access_Token_Secret
     ``` 
-1. Configure and code your twitter bot under he `TwitterBot.java` file.
+1. Configure and code your twitter bot under the `TwitterBot.java` file.
 
+
+Credits
+
+[staticvoidgames](http://staticvoidgames.com/tutorials/howTo/twitterBot) - My starter guide to understanding how to build a twitter bot in java.
 
 
 License
