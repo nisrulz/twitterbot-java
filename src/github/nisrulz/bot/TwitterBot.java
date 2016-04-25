@@ -96,4 +96,28 @@ public class TwitterBot {
 		statusUpdate.inReplyToStatusId(tweetResult.getId());
 		Status status = twitter.updateStatus(statusUpdate);
 	}
+
+	private static void replyToTweetWithVariety(List<String> searches,
+			List<String> replies) throws TwitterException {
+		// access the twitter API using your twitter4j.properties file
+		Twitter twitter = TwitterFactory.getSingleton();
+
+		// create a new search, chosoe from random searches
+		Query query = new Query(searches.get((int) (searches.size() * Math
+				.random())));
+
+		// get the results from that search
+		QueryResult result = twitter.search(query);
+
+		// get the first tweet from those results
+		Status tweetResult = result.getTweets().get(0);
+
+		// reply to that tweet, choose from random replies
+		StatusUpdate statusUpdate = new StatusUpdate(".@"
+				+ tweetResult.getUser().getScreenName()
+				+ replies.get((int) (replies.size() * Math.random())));
+		statusUpdate.inReplyToStatusId(tweetResult.getId());
+		Status status = twitter.updateStatus(statusUpdate);
+
+	}
 }
