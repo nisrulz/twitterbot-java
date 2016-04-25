@@ -3,7 +3,7 @@
 I built this twitter bot to automate few tasks on twitter with respect to GDG New Delhi.
 
 ###Steps
-1. Create a file named `twitter4j.properties` and update it with credentials from your twitter dashboard
+1. Create a file named `twitter4j.properties`, place it right under the `src` folder and update it with credentials from your twitter dashboard
 
     ```
    oauth.consumerKey=Your_Consumer_Key
