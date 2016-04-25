@@ -1,5 +1,6 @@
 package github.nisrulz.bot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import twitter4j.Query;
@@ -26,7 +27,26 @@ public class TwitterBot {
 				// getHomeTimeLine();
 
 				// Seach for tweets
-				searchForTweets("@gdg_nd");
+				// searchForTweets("@gdg_nd");
+
+				// Reply to a tweet
+				String query_text = "\"your welcome\"";
+				String reply = "I believe you meant \"you're\" here?";
+				replyToTweet(query_text, reply);
+
+				// Reply with variety
+				List<String> searches = new ArrayList<>();
+				searches.add("\"your welcome\"");
+				searches.add("\"your the\"");
+				searches.add("\"your a \"");
+
+				List<String> replies = new ArrayList<>();
+				replies.add("I believe you meant \"you're\" here?");
+				replies.add(" I've detected the wrong \"you're\". Destroy!");
+				replies.add(" No, you are! Seriously. You are. \"You're\".");
+
+				replyToTweetWithVariety(searches, replies);
+
 			} catch (TwitterException e) {
 				e.printStackTrace();
 			}
@@ -102,22 +122,33 @@ public class TwitterBot {
 		// access the twitter API using your twitter4j.properties file
 		Twitter twitter = TwitterFactory.getSingleton();
 
-		// create a new search, chosoe from random searches
-		Query query = new Query(searches.get((int) (searches.size() * Math
-				.random())));
+		// keep tweeting forever
+		while (true) {
+			// create a new search, chosoe from random searches
+			Query query = new Query(searches.get((int) (searches.size() * Math
+					.random())));
 
-		// get the results from that search
-		QueryResult result = twitter.search(query);
+			// get the results from that search
+			QueryResult result = twitter.search(query);
 
-		// get the first tweet from those results
-		Status tweetResult = result.getTweets().get(0);
+			// get the first tweet from those results
+			Status tweetResult = result.getTweets().get(0);
 
-		// reply to that tweet, choose from random replies
-		StatusUpdate statusUpdate = new StatusUpdate(".@"
-				+ tweetResult.getUser().getScreenName()
-				+ replies.get((int) (replies.size() * Math.random())));
-		statusUpdate.inReplyToStatusId(tweetResult.getId());
-		Status status = twitter.updateStatus(statusUpdate);
+			// reply to that tweet, choose from random replies
+			StatusUpdate statusUpdate = new StatusUpdate(".@"
+					+ tweetResult.getUser().getScreenName()
+					+ replies.get((int) (replies.size() * Math.random())));
+			statusUpdate.inReplyToStatusId(tweetResult.getId());
+			Status status = twitter.updateStatus(statusUpdate);
+			System.out.println("Sleeping.");
+
+			// go to sleep for an hour
+			try {
+				Thread.sleep(60 * 60 * 1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 
 	}
 }
